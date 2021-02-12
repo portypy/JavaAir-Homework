@@ -4,7 +4,7 @@ import flight.Flight;
 import org.junit.Before;
 import org.junit.Test;
 import passenger.Passenger;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -39,8 +39,7 @@ public class FlightTest {
         passenger2 = new Passenger("Borg", 0);
         ArrayList<Passenger>passengers = new ArrayList<>();
         passengers.add(passenger);
-        flight = new Flight(deckCrew, cabinCrew, passengers, plane,
-                "FE123", DestinationType.EDI, DestinationType.BRR, "12:10");
+        flight = new Flight(deckCrew, cabinCrew, passengers, plane, "FE123", DestinationType.EDI, DestinationType.BRR, LocalDateTime.of(2021, 5, 21, 15, 33));
     }
 
     @Test
@@ -73,7 +72,7 @@ public class FlightTest {
     }
     @Test
     public void hasDepartureTime(){
-        assertEquals("12:10", flight.getDepartureTime());
+        assertEquals(LocalDateTime.of(2021, 5, 21, 15, 33), flight.getDepartureTime());
     }
     @Test
     public void hasSeats(){
