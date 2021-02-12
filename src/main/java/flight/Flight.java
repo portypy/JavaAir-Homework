@@ -3,7 +3,6 @@ package flight;
 import airline.CabinCrewMember;
 import airline.Pilot;
 import airline.Plane;
-import airline.PlaneType;
 import passenger.Passenger;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class Flight {
     private DestinationType departureAirport;
     private DestinationType destination;
     private String departureTime;
-    private int emptySeats;
+    private int seats;
 
     public Flight(ArrayList<Pilot> deckCrew, ArrayList<CabinCrewMember> cabinCrew, ArrayList<Passenger> passengers,
                   Plane plane, String flightNumber, DestinationType departureAirport, DestinationType destination, String departureTime) {
@@ -30,7 +29,7 @@ public class Flight {
         this.departureAirport = departureAirport;
         this.destination = destination;
         this.departureTime = departureTime;
-        this.emptySeats = plane.getCapacity();
+        this.seats = plane.getCapacity();
 
     }
 
@@ -66,7 +65,11 @@ public class Flight {
         return departureTime;
     }
 
+    public int getNumberOfSeats() {
+        return seats;
+    }
+
     public int getEmptySeats() {
-        return emptySeats;
+        return this.getNumberOfSeats() - this.getPassengersNumber();
     }
 }

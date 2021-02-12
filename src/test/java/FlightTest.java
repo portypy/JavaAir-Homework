@@ -21,7 +21,6 @@ public class FlightTest {
     Passenger passenger1;
     Passenger passenger2;
 
-
     @Before
     public void before(){
         plane = new Plane(PlaneType.HONDA);
@@ -40,8 +39,6 @@ public class FlightTest {
         passenger2 = new Passenger("Borg", 0);
         ArrayList<Passenger>passengers = new ArrayList<>();
         passengers.add(passenger);
-        passengers.add(passenger1);
-//        passengers.add(passenger2);
         flight = new Flight(deckCrew, cabinCrew, passengers, plane,
                 "FE123", DestinationType.EDI, DestinationType.BRR, "12:10");
     }
@@ -56,7 +53,7 @@ public class FlightTest {
     }
     @Test
     public void hasPassengers(){
-        assertEquals(2, flight.getPassengersNumber());
+        assertEquals(1, flight.getPassengersNumber());
     }
     @Test
     public void hasPlane(){
@@ -78,6 +75,13 @@ public class FlightTest {
     public void hasDeptartureTime(){
         assertEquals("12:10", flight.getDepartureTime());
     }
-
+    @Test
+    public void hasSeats(){
+        assertEquals(2, flight.getNumberOfSeats());
+    }
+    @Test
+    public void canCheckEmptySeats(){
+        assertEquals(1, flight.getEmptySeats());
+    }
 
 }
