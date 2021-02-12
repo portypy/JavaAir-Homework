@@ -53,7 +53,7 @@ public class Flight {
         return flightNumber;
     }
 
-    public DestinationType getDepartureAirport() {
+    public DestinationType getDepartureAirportName() {
         return departureAirport;
     }
 
@@ -69,7 +69,13 @@ public class Flight {
         return seats;
     }
 
-    public int getEmptySeats() {
+    public int getNumberOfEmptySeats() {
         return this.getNumberOfSeats() - this.getPassengersNumber();
+    }
+
+    public void bookPassenger(Passenger passenger) {
+        if (this.getNumberOfEmptySeats() > 0){
+            passengers.add(passenger);
+        }
     }
 }

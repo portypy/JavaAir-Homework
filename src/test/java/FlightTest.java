@@ -65,14 +65,14 @@ public class FlightTest {
     }
     @Test
     public void hasDepartureAirport(){
-        assertEquals(DestinationType.EDI, flight.getDepartureAirport());
+        assertEquals(DestinationType.EDI, flight.getDepartureAirportName());
     }
     @Test
     public void hasDestination(){
         assertEquals(DestinationType.BRR, flight.getDestination());
     }
     @Test
-    public void hasDeptartureTime(){
+    public void hasDepartureTime(){
         assertEquals("12:10", flight.getDepartureTime());
     }
     @Test
@@ -81,7 +81,21 @@ public class FlightTest {
     }
     @Test
     public void canCheckEmptySeats(){
-        assertEquals(1, flight.getEmptySeats());
+        assertEquals(1, flight.getNumberOfEmptySeats());
+    }
+    @Test
+    public void canBookPassenger(){
+        flight.bookPassenger(passenger1);
+        assertEquals(0, flight.getNumberOfEmptySeats());
+        assertEquals(2, flight.getPassengersNumber());
+    }
+
+    @Test
+    public void cantBookToManyPassengers() {
+        flight.bookPassenger(passenger1);
+        flight.bookPassenger(passenger2);
+        assertEquals(0,flight.getNumberOfEmptySeats());
+        assertEquals(2,flight.getPassengersNumber());
     }
 
 }

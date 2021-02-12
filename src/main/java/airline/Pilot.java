@@ -1,5 +1,7 @@
 package airline;
 
+import flight.Flight;
+
 public class Pilot {
     private String name;
     private PilotType pilotType;
@@ -21,5 +23,9 @@ public class Pilot {
 
     public PilotType getPilotType() {
         return pilotType;
+    }
+
+    public String messageToPassengers(){
+        return "Ladies and Gentlemen, This Is Your Captain Speaking.";
     }
 }

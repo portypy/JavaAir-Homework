@@ -20,4 +20,7 @@ public class CabinCrewMember {
     public CabinCrewMemberType getCabinCrewMemberType() {
         return cabinCrewMemberType;
     }
+    public String messageToPassengers(){
+        return "Smoking is not allowed on any JavaAir flight";
+    }
 }

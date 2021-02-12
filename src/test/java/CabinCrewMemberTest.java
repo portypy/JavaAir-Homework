@@ -29,4 +29,8 @@ public class CabinCrewMemberTest {
     public void hasMemberType() {
         assertEquals(CabinCrewMemberType.FLIGHT_ATTENDANT, cabinCrewMember.getCabinCrewMemberType());
     }
+    @Test
+    public void canRelayMessage(){
+        assertEquals("Smoking is not allowed on any JavaAir flight", cabinCrewMember.messageToPassengers());
+    }
 }
