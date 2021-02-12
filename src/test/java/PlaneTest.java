@@ -17,4 +17,12 @@ public class PlaneTest {
     public void hasType(){
         assertEquals(PlaneType.GULFSTREAM, plane.getPlaneType());
     }
+    @Test
+    public void hasCapacity(){
+        assertEquals(21, plane.getCapacity());
+    }
+    @Test
+    public void canCheckWeight(){
+        assertEquals(41200, plane.getWeight());
+    }
 }
