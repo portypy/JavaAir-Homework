@@ -1,7 +1,7 @@
 package airline;
 
 public enum PlaneType {
-    CESSNA(14,16300),
+    CESSNA(14,10000),
     BOMBARDIER(19,42000),
     GULFSTREAM(21, 41200),
     HONDA(2, 4800);
