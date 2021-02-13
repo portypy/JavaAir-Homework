@@ -35,9 +35,9 @@ public class FlightManagerTest {
         ArrayList<CabinCrewMember> cabinCrew = new ArrayList<>();
         cabinCrew.add(cabinCrewMember);
         cabinCrew.add(cabinCrewMember1);
-        passenger = new Passenger("Lars", 2);
-        passenger1 = new Passenger("Herman", 1);
-        passenger2 = new Passenger("Borg", 0);
+        passenger = new Passenger("Lars", 2, false);
+        passenger1 = new Passenger("Herman", 1, false);
+        passenger2 = new Passenger("Borg", 0, false);
         ArrayList<Passenger>passengers = new ArrayList<>();
         passengers.add(passenger);
         passengers.add(passenger1);

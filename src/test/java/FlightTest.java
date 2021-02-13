@@ -34,9 +34,9 @@ public class FlightTest {
         ArrayList<CabinCrewMember> cabinCrew = new ArrayList<>();
         cabinCrew.add(cabinCrewMember);
         cabinCrew.add(cabinCrewMember1);
-        passenger = new Passenger("Lars", 2);
-        passenger1 = new Passenger("Herman", 1);
-        passenger2 = new Passenger("Borg", 0);
+        passenger = new Passenger("Lars", 2, false);
+        passenger1 = new Passenger("Herman", 1, false);
+        passenger2 = new Passenger("Borg", 0, false);
         ArrayList<Passenger>passengers = new ArrayList<>();
         passengers.add(passenger);
         flight = new Flight(deckCrew, cabinCrew, passengers, plane, "FE123", DestinationType.EDI, DestinationType.BRR, LocalDateTime.of(2021, 5, 21, 15, 33));
@@ -95,6 +95,11 @@ public class FlightTest {
         flight.bookPassenger(passenger2);
         assertEquals(0,flight.getNumberOfEmptySeats());
         assertEquals(2,flight.getPassengersNumber());
+    }
+    @Test
+    public void isPassengerFlightPropertyTrue(){
+        flight.bookPassenger(passenger1);
+        assertEquals(true, passenger1.getFlight());
     }
 
 }
