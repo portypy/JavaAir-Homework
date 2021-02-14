@@ -4,6 +4,7 @@ public class Passenger {
     private String name;
     private int nrOfBags;
     private Boolean flight;
+    private int seatNumber;
 
     public Passenger(String name, int nrOfBags, Boolean flight) {
         this.name = name;
@@ -33,5 +34,13 @@ public class Passenger {
 
     public void setFlight(Boolean flight) {
         this.flight = flight;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }

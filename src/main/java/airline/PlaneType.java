@@ -4,7 +4,7 @@ public enum PlaneType {
     CESSNA(14,10000),
     BOMBARDIER(19,42000),
     GULFSTREAM(21, 41200),
-    HONDA(2, 4800);
+    HONDA(5, 4800);
 
     private final int capacity;
     private final int totalWeight;

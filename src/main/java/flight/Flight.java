@@ -6,6 +6,7 @@ import airline.Plane;
 import passenger.Passenger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Flight {
 
@@ -34,39 +35,39 @@ public class Flight {
     }
 
     public int getDeckCrewSize() {
-        return deckCrew.size();
+        return this.deckCrew.size();
     }
 
     public int getCabinCrewSize() {
-        return cabinCrew.size();
+        return this.cabinCrew.size();
     }
 
     public int getPassengersNumber() {
-        return passengers.size();
+        return this.passengers.size();
     }
 
     public Plane getPlane() {
-        return plane;
+        return this.plane;
     }
 
     public String getFlightNumber() {
-        return flightNumber;
+        return this.flightNumber;
     }
 
     public DestinationType getDepartureAirportName() {
-        return departureAirport;
+        return this.departureAirport;
     }
 
     public DestinationType getDestination() {
-        return destination;
+        return this.destination;
     }
 
     public LocalDateTime getDepartureTime() {
-        return departureTime;
+        return this.departureTime;
     }
 
     public int getNumberOfSeats() {
-        return seats;
+        return this.seats;
     }
 
     public int getNumberOfEmptySeats() {
@@ -75,8 +76,16 @@ public class Flight {
 
     public void bookPassenger(Passenger passenger) {
         if (this.getNumberOfEmptySeats() > 0){
-            passengers.add(passenger);
+            this.passengers.add(passenger);
             passenger.setFlight(true);
+            int randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity());
+            for (int i = 0; i < this.passengers.size(); i++)
+                if (randomSeatNr == this.passengers.get(i).getSeatNumber()){
+                    i = 0;
+                    randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity());
+                }
+
+            passenger.setSeatNumber(randomSeatNr);
         }
     }
 }

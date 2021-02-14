@@ -44,4 +44,5 @@ public class PassengerTest {
         passenger.setFlight(true);
         assertEquals(true, passenger.getFlight());
     }
+
 }

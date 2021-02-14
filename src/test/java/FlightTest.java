@@ -20,6 +20,9 @@ public class FlightTest {
     Passenger passenger;
     Passenger passenger1;
     Passenger passenger2;
+    Passenger passenger3;
+    Passenger passenger4;
+    Passenger passenger5;
 
     @Before
     public void before(){
@@ -37,9 +40,21 @@ public class FlightTest {
         passenger = new Passenger("Lars", 2, false);
         passenger1 = new Passenger("Herman", 1, false);
         passenger2 = new Passenger("Borg", 0, false);
+        passenger3 = new Passenger("Borg", 0, false);
+        passenger4 = new Passenger("Borg", 0, false);
+        passenger5 = new Passenger("Borg", 0, false);
         ArrayList<Passenger>passengers = new ArrayList<>();
         passengers.add(passenger);
-        flight = new Flight(deckCrew, cabinCrew, passengers, plane, "FE123", DestinationType.EDI, DestinationType.BRR, LocalDateTime.of(2021, 5, 21, 15, 33));
+        flight = new Flight(
+                deckCrew,
+                cabinCrew,
+                passengers,
+                plane,
+                "FE123",
+                DestinationType.EDI,
+                DestinationType.BRR,
+                LocalDateTime.of(2021, 5, 21, 15, 33)
+        );
     }
 
     @Test
@@ -76,16 +91,16 @@ public class FlightTest {
     }
     @Test
     public void hasSeats(){
-        assertEquals(2, flight.getNumberOfSeats());
+        assertEquals(5, flight.getNumberOfSeats());
     }
     @Test
     public void canCheckEmptySeats(){
-        assertEquals(1, flight.getNumberOfEmptySeats());
+        assertEquals(4, flight.getNumberOfEmptySeats());
     }
     @Test
     public void canBookPassenger(){
         flight.bookPassenger(passenger1);
-        assertEquals(0, flight.getNumberOfEmptySeats());
+        assertEquals(3, flight.getNumberOfEmptySeats());
         assertEquals(2, flight.getPassengersNumber());
     }
 
@@ -93,13 +108,21 @@ public class FlightTest {
     public void cantBookToManyPassengers() {
         flight.bookPassenger(passenger1);
         flight.bookPassenger(passenger2);
+        flight.bookPassenger(passenger3);
+        flight.bookPassenger(passenger4);
+        flight.bookPassenger(passenger5);
         assertEquals(0,flight.getNumberOfEmptySeats());
-        assertEquals(2,flight.getPassengersNumber());
+        assertEquals(5,flight.getPassengersNumber());
     }
     @Test
     public void isPassengerFlightPropertyTrue(){
         flight.bookPassenger(passenger1);
         assertEquals(true, passenger1.getFlight());
+    }
+    @Test
+    public void canAddSeatNumber(){
+        passenger.setSeatNumber(2);
+        assertEquals(2, passenger.getSeatNumber());
     }
 
 }
