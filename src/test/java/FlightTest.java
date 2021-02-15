@@ -6,6 +6,7 @@ import org.junit.Test;
 import passenger.Passenger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
@@ -44,7 +45,6 @@ public class FlightTest {
         passenger4 = new Passenger("Borg", 0, false);
         passenger5 = new Passenger("Borg", 0, false);
         ArrayList<Passenger>passengers = new ArrayList<>();
-        passengers.add(passenger);
         flight = new Flight(
                 deckCrew,
                 cabinCrew,
@@ -65,10 +65,7 @@ public class FlightTest {
     public void hasCabinCrew(){
         assertEquals(2, flight.getCabinCrewSize());
     }
-    @Test
-    public void hasPassengers(){
-        assertEquals(1, flight.getPassengersNumber());
-    }
+
     @Test
     public void hasPlane(){
         assertEquals(plane, flight.getPlane());
@@ -95,17 +92,18 @@ public class FlightTest {
     }
     @Test
     public void canCheckEmptySeats(){
-        assertEquals(4, flight.getNumberOfEmptySeats());
+        assertEquals(5, flight.getNumberOfEmptySeats());
     }
     @Test
     public void canBookPassenger(){
         flight.bookPassenger(passenger1);
-        assertEquals(3, flight.getNumberOfEmptySeats());
-        assertEquals(2, flight.getPassengersNumber());
+        assertEquals(4, flight.getNumberOfEmptySeats());
+        assertEquals(1, flight.getPassengersNumber());
     }
 
     @Test
     public void cantBookToManyPassengers() {
+        flight.bookPassenger(passenger);
         flight.bookPassenger(passenger1);
         flight.bookPassenger(passenger2);
         flight.bookPassenger(passenger3);
@@ -123,6 +121,25 @@ public class FlightTest {
     public void canAddSeatNumber(){
         passenger.setSeatNumber(2);
         assertEquals(2, passenger.getSeatNumber());
+    }
+    @Test
+    public void hasRandomSeatsNumbers(){
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger1);
+        flight.bookPassenger(passenger2);
+        flight.bookPassenger(passenger3);
+        flight.bookPassenger(passenger4);
+//        for (int i = 0; i < this.flight.getPassengersNumber(); i++){
+            int[] seatNumbers = new int[]{
+                    passenger.getSeatNumber(),
+                    passenger1.getSeatNumber(),
+                    passenger2.getSeatNumber(),
+                    passenger3.getSeatNumber(),
+                    passenger4.getSeatNumber()
+            };
+            Arrays.sort(seatNumbers);
+            int[] numbersToCompare = new int[]{1, 2, 3, 4, 5};
+        assertEquals(true, Arrays.equals(seatNumbers, numbersToCompare));
     }
 
 }

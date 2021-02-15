@@ -78,12 +78,13 @@ public class Flight {
         if (this.getNumberOfEmptySeats() > 0){
             this.passengers.add(passenger);
             passenger.setFlight(true);
-            int randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity());
-            for (int i = 0; i < this.passengers.size(); i++)
-                if (randomSeatNr == this.passengers.get(i).getSeatNumber()){
-                    i = 0;
-                    randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity());
-                }
+            int randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity()+1);
+                for (int i = 1; i < this.passengers.size(); i++)
+                    if (randomSeatNr == passengers.get(i-1).getSeatNumber()) {
+                        randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity()+1);
+                        i = 0;
+                    }
+
 
             passenger.setSeatNumber(randomSeatNr);
         }
