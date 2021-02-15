@@ -84,8 +84,6 @@ public class Flight {
                         randomSeatNr = ThreadLocalRandom.current().nextInt(1, this.plane.getCapacity()+1);
                         i = 0;
                     }
-
-
             passenger.setSeatNumber(randomSeatNr);
         }
     }
